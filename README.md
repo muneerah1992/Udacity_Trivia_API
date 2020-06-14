@@ -108,7 +108,8 @@ Authentication: This version of the application does not require authentication 
 
 ### Error Handling
 Errors are returned as JSON objects in the following format:
-``` {
+``` 
+{
     "success": False, 
     "error": 400,
     "message": "bad request"
@@ -458,45 +459,45 @@ POST '/questions/search'
 GET '/categories/<id>/questions'
 - Gets questions by category id using url parameters.
 - Returns: list of questions based on the category id, success value, total questions
-- Sample: curl http://127.0.0.1:5000/categories/1/questions  
+- Sample: curl http://127.0.0.1:5000/categories/2/questions  
 ``` 
-{
-  "current_category": "Science", 
+    {
+  "current_category": "Art", 
   "questions": [
     {
-      "answer": "The Liver", 
-      "category": 1, 
-      "difficulty": 4, 
-      "id": 20, 
-      "question": "What is the heaviest organ in the human body?"
-    }, 
-    {
-      "answer": "Alexander Fleming", 
-      "category": 1, 
-      "difficulty": 3, 
-      "id": 21, 
-      "question": "Who discovered penicillin?"
-    }, 
-    {
-      "answer": "Blood", 
-      "category": 1, 
-      "difficulty": 4, 
-      "id": 22, 
-      "question": "Hematology is a branch of medicine involving the study of what?"
-    }, 
-    {
-      "answer": "answer", 
-      "category": 1, 
+      "answer": "Escher", 
+      "category": 2, 
       "difficulty": 1, 
-      "id": 31, 
-      "question": "question"
+      "id": 16, 
+      "question": "Which Dutch graphic artist\u2013initials M C was a creator of optical illusions?"
+    }, 
+    {
+      "answer": "Mona Lisa", 
+      "category": 2, 
+      "difficulty": 3, 
+      "id": 17, 
+      "question": "La Giaconda is better known as what?"
+    }, 
+    {
+      "answer": "One", 
+      "category": 2, 
+      "difficulty": 4, 
+      "id": 18, 
+      "question": "How many paintings did Van Gogh sell in his lifetime?"
+    }, 
+    {
+      "answer": "Jackson Pollock", 
+      "category": 2, 
+      "difficulty": 2, 
+      "id": 19, 
+      "question": "Which American artist was a pioneer of Abstract Expressionism, and a leading exponent of action painting?"
     }
   ], 
   "success": true, 
   "total_questions": 4
 }
 ```
-
+    
 POST '/quizzes'
 - Allows users to play the quiz game.
 - Returns: random question not among previous questions and success value.

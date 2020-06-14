@@ -175,30 +175,29 @@ def create_app(test_config=None):
         questions = Question.query.all()
     else:
         questions = Question.query.filter_by(category=category['id']).all()
-
+    
     total = len(questions)
 
-    def check_if_used(question):
-        used = False
-        for q in previous_questions:
-            if (q == question.id):
-                used = True
-        return used
-
-    question = questions[random.randrange(0, len(questions), 1)]
-
-    while (check_if_used(question)):
-        question = questions[random.randrange(0, len(questions), 1)]
-        if (len(previous_questions) == total):
-            return jsonify({
-                'success': True
-            })
+    randome_question = []
+    used = False    
+    
+    for question in range(total):
+      randome_question = questions[random.randrange(0, len(questions), 1)]
+      if randome_question.id not in previous_questions:
+        used = True
+        break
+      if not used:
+        pass
+    if (len(previous_questions) == total):
+      return jsonify({
+          'success': True
+      })
 
     return jsonify({
-        'success': True,
-        'question': question.format()
-    })
-
+      'success': True,
+      'question': randome_question.format()
+      })
+                
   #error handlers for all expected errors 
   @app.errorhandler(404)
   def not_found(error):
@@ -225,5 +224,3 @@ def create_app(test_config=None):
       }), 400
   
   return app
-
-    

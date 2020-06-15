@@ -125,6 +125,13 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['total_questions'])
         self.assertTrue(len(data['current_category']))
 
+    def test_400_if_questions_by_category_fails(self):
+        res = self.client().get('/categories/200/questions')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'bad request')
 
     def test_play_quiz(self):
         res = self.client().post('/quizzes',
@@ -138,6 +145,15 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['question']['category'], 3)
         self.assertNotEqual(data['question']['id'], 2)
         self.assertNotEqual(data['question']['id'], 3)
+
+    def test_play_quiz_fails(self):
+        res = self.client().post('/quizzes', json={})
+        data = json.loads(res.data)
+
+        # check response status code and message
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'bad request')
 
 # Make the tests conveniently executable
 if __name__ == "__main__":

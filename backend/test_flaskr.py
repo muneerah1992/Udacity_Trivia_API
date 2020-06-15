@@ -70,7 +70,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(len(data['questions']))
         self.assertTrue(data['total_questions'])
         self.assertTrue(len(data['categories']))
-    '''
+    
     def test_delete_question(self):
         res = self.client().delete('/questions/9')
         data = json.loads(res.data)
@@ -82,7 +82,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(len(data['questions']))
         self.assertTrue(data['total_questions'])
         self.assertEqual(question, None)
-    '''
+    
     def test_create_new_question(self):
         total_questions = len(Question.query.all())
         res = self.client().post('/questions', json=self.new_question)
